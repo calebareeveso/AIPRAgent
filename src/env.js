@@ -6,6 +6,7 @@ const envSchema = z.object({
   GOOGLE_API_KEY: z.string().optional(),
   COMPOSIO_API_KEY: z.string().optional(),
   TAVILY_API_KEY: z.string().optional(),
+  AI_AGENT_EMAIL: z.string().optional(),
 });
 
 try {

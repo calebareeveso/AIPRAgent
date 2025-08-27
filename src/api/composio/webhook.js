@@ -1,4 +1,5 @@
 import express from "express";
+import { env } from "../../env.js";
 import { replyPRAgentEmail, sendFinalEmailWithAttachment } from "../../actions/emailActions.js";
 import { searchMediaSources } from "../../actions/searchActions.js";
 import { takeScreenshotsAndGeneratePDF } from "../../actions/screenshotActions.js";
@@ -105,6 +106,20 @@ router.post("/", async (req, res) => {
     }
 
     console.log("Extracted email:", extractedEmail);
+    
+    // Check if the extracted email matches the AI agent email
+    if (env.AI_AGENT_EMAIL && extractedEmail === env.AI_AGENT_EMAIL) {
+      console.log(
+        "⏭️ Skipping - AI agent email detected. Email:",
+        extractedEmail
+      );
+      return res.json({
+        status: "skipped",
+        message: "AI agent emails are not processed",
+        email: extractedEmail,
+      });
+    }
+    
     const emailResponse = await replyPRAgentEmail(
       extractedEmail,
       reportData.threadId
