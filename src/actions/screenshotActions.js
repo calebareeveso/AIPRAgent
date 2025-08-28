@@ -6,7 +6,7 @@ export const takeScreenshotsAndGeneratePDF = async (
   searchResults,
   generatedReport
 ) => {
-  // Simple configuration that works with Render.com
+  // Docker configuration using system Chromium
   const browser = await puppeteer.launch({
     args: [
       "--no-sandbox",
@@ -17,9 +17,12 @@ export const takeScreenshotsAndGeneratePDF = async (
       "--no-zygote",
       "--single-process",
       "--disable-gpu",
+      "--disable-web-security",
+      "--disable-features=VizDisplayCompositor"
     ],
     headless: true,
-    executablePath: puppeteer.executablePath(), 
+    // Use system Chromium in Docker, fallback to Puppeteer's bundled version locally
+    executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || puppeteer.executablePath(),
   });
 
   try {
