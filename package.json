@@ -15,7 +15,8 @@
     "start": "node --env-file=.env src/index.js",
     "dev": "node --watch --env-file=.env src/index.js",
     "lint": "eslint --fix src",
-    "test": "vitest run"
+    "test": "vitest run",
+    "postinstall": "npx puppeteer browsers install chrome"
   },
   "dependencies": {
     "composio-core": "^0.5.39",

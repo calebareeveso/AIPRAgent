@@ -6,8 +6,33 @@ export const takeScreenshotsAndGeneratePDF = async (
   searchResults,
   generatedReport
 ) => {
+  // Enhanced configuration for Render.com production environment
   const browser = await puppeteer.launch({
-    args: ["--no-sandbox", "--disable-setuid-sandbox"],
+    args: [
+      "--no-sandbox",
+      "--disable-setuid-sandbox", 
+      "--disable-dev-shm-usage",
+      "--disable-accelerated-2d-canvas",
+      "--no-first-run",
+      "--no-zygote",
+      "--single-process",
+      "--disable-gpu",
+      "--disable-background-timer-throttling",
+      "--disable-backgrounding-occluded-windows",
+      "--disable-renderer-backgrounding",
+      "--disable-web-security",
+      "--disable-features=TranslateUI",
+      "--disable-ipc-flooding-protection"
+    ],
+    headless: true,
+    // Try multiple possible Chrome locations for Render.com
+    executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || 
+                    process.env.CHROME_BIN ||
+                    '/opt/render/.cache/puppeteer/chrome/linux-139.0.7258.138/chrome-linux64/chrome' ||
+                    '/usr/bin/google-chrome-stable' ||
+                    '/usr/bin/google-chrome' ||
+                    '/usr/bin/chromium-browser' ||
+                    puppeteer.executablePath(),
   });
 
   try {
