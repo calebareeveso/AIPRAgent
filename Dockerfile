@@ -29,8 +29,10 @@ COPY package*.json pnpm-lock.yaml ./
 # Install pnpm globally
 RUN npm install -g pnpm
 
-# Install dependencies
-RUN pnpm install --frozen-lockfile --prod
+# Approve puppeteer build scripts and install dependencies
+RUN pnpm config set auto-install-peers true \
+    && pnpm config set ignore-scripts false \
+    && pnpm install --frozen-lockfile --prod
 
 # Copy application code
 COPY . .
@@ -42,5 +44,5 @@ ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
 # Expose port
 EXPOSE 3001
 
-# Start the application
-CMD ["pnpm", "start"]
+# Start the application without --env-file flag (use environment variables directly)
+CMD ["node", "src/index.js"]
