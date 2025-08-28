@@ -58,6 +58,7 @@ curl -X POST http://localhost:3001/api/v1/composio/webhook \
 GOOGLE_API_KEY=your_actual_google_api_key
 COMPOSIO_API_KEY=your_actual_composio_api_key  
 TAVILY_API_KEY=your_actual_tavily_api_key
+AI_AGENT_EMAIL=your_actual_email
 ```
 
 ---
