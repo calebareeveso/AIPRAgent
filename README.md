@@ -3,6 +3,10 @@
 ## Overview
 The AI Media Coverage Reporter is an automated tool that generates comprehensive media coverage reports based on email requests. Simply send an email with the correct subject format, and receive a detailed PDF report with screenshots and AI analysis
 
+
+![AI Media Coverage Reporter Screenshot](https://res.cloudinary.com/dgdnihwti/image/upload/v1756374417/Screenshot_2025-08-28_at_10.45.23_am_bp27t0.png)
+
+
 ### **File Structure:**
 - **Actions separated into individual files:**
   - `src/actions/emailActions.js` - Email sending functionality
@@ -33,21 +37,21 @@ curl -X POST http://localhost:3001/api/v1/composio/webhook \
     "timestamp": "2025-08-19T10:29:16.943Z",
     "data": {
       "attachment_list": [],
-      "id": "198c1e02b0fcd9ee",
+      "id": "198...",
       "label_ids": ["UNREAD", "IMPORTANT", "CATEGORY_PERSONAL", "INBOX"],
-      "message_id": "198c1e02b0fcd9ee",
-      "message_text": "Bitcoin news coverage",
+      "message_id": "198c...",
+      "message_text": "Taylor Swift's engagement to Travis Kelce in the uk",
       "message_timestamp": "2025-08-19T10:28:58Z",
       "payload": {"body": {}, "filename": "", "headers": [], "mimeType": "multipart/alternative", "partId": "", "parts": []},
-      "preview": {"body": "Bitcoin news coverage", "subject": "Media Coverage Report Request"},
+      "preview": {"body": "Taylor Swift's engagement to Travis Kelce in the uk", "subject": "Media Coverage Report Request"},
       "sender": "PR Agent <caleb@example.co>",
       "subject": "Media Coverage Report Request",
-      "thread_id": "198c1e02b0fcd9ee",
-      "to": "pragent@gmail.com",
+      "thread_id": "198c...",
+      "to": "pr-ai-agent@example.com",
       "connection_id": "c24009c4-a380-41af-9ed7-4bda3e8028aa",
       "connection_nano_id": "ca_wx-s_W9T_oOV",
       "trigger_nano_id": "ti_ikxZE4xQMYoF",
-      "trigger_id": "b3c6ae9f-ac2a-4fc8-b6d5-ce726995508c",
+      "trigger_id": "b3c...c",
       "user_id": "default"
     }
   }'
@@ -58,7 +62,7 @@ curl -X POST http://localhost:3001/api/v1/composio/webhook \
 GOOGLE_API_KEY=your_actual_google_api_key
 COMPOSIO_API_KEY=your_actual_composio_api_key  
 TAVILY_API_KEY=your_actual_tavily_api_key
-AI_AGENT_EMAIL=your_actual_email
+AI_AGENT_EMAIL=ai_agent_email
 ```
 
 ---
@@ -107,7 +111,7 @@ The body of the email should contain your specific search query. This is the inf
 * Add geographical restrictions if needed, such as "`UK news only`."
 
 **Examples:**
-* `"Taylor Swift concert reviews"`
+* `"Taylor Swift's engagement to Travis Kelce in the uk"`
 * `"Tesla cybertruck launch coverage"`
 * `"Netflix quarterly earnings news"`
 
@@ -158,7 +162,7 @@ Here are a few templates to help you get started.
 
 **Template 1: Basic Request**
 * **Subject:** `Media Coverage Report Request`
-* **Body:** `Starbucks holiday menu launch coverage`
+* **Body:** `Taylor Swift's engagement to Travis Kelce in the uk`
 
 **Template 2: Quick Turnaround**
 * **Subject:** `Media Coverage Report Request: 3days, 5 results`
