@@ -16,7 +16,7 @@
     "dev": "node --watch --env-file=.env src/index.js",
     "lint": "eslint --fix src",
     "test": "vitest run",
-    "postinstall": "npx puppeteer browsers install chrome"
+    "postinstall": "pnpm exec puppeteer browsers install chrome --path ./node_modules/puppeteer/.local-browsers"
   },
   "dependencies": {
     "composio-core": "^0.5.39",

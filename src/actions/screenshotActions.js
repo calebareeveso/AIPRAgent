@@ -6,7 +6,7 @@ export const takeScreenshotsAndGeneratePDF = async (
   searchResults,
   generatedReport
 ) => {
-  // Enhanced configuration for Render.com production environment
+  // Simple configuration that works with Render.com
   const browser = await puppeteer.launch({
     args: [
       "--no-sandbox",
@@ -19,7 +19,7 @@ export const takeScreenshotsAndGeneratePDF = async (
       "--disable-gpu",
     ],
     headless: true,
-    
+    executablePath: puppeteer.executablePath(), 
   });
 
   try {
