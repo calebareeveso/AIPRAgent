@@ -1,21 +1,20 @@
 #  AI Media Coverage Reporter - Set up Guide for Dev
 
 ## Overview
-The AI Media Coverage Reporter is an automated tool that generates comprehensive media coverage reports based on email requests. Simply send an email with the correct subject format, and receive a detailed PDF report with screenshots, AI analysis, and website analytics.
+The AI Media Coverage Reporter is an automated tool that generates comprehensive media coverage reports based on email requests. Simply send an email with the correct subject format, and receive a detailed PDF report with screenshots and AI analysis
 
-### ** File Structure:**
+### **File Structure:**
 - **Actions separated into individual files:**
   - `src/actions/emailActions.js` - Email sending functionality
   - `src/actions/searchActions.js` - Media source searching
   - `src/actions/screenshotActions.js` - Screenshot and PDF generation
-  - `src/actions/analyticsActions.js` - Analytics data gathering
 
 - **Helper utilities organized:**
   - `src/utils/formatters.js` - Number formatting and HTML table generation
   - `src/utils/composio.js` - Composio PDF upload functionality
 
 - **Express.js endpoint:**
-  - `src/api/composio/webhook.js` - Main webhook handler (equivalent to your Next.js route)
+  - `src/api/composio/webhook.js` - Main webhook handler 
 
 
 
@@ -65,7 +64,7 @@ TAVILY_API_KEY=your_actual_tavily_api_key
 
 # User Guide for PR Agents
 
-This guide provides a comprehensive overview of the **AI Media Coverage Reporter**, an automated tool designed to streamline the process of generating media coverage reports. By simply sending an email, you can receive a detailed PDF report with screenshots, AI analysis, and website analytics.
+This guide provides a comprehensive overview of the **AI Media Coverage Reporter**, an automated tool designed to streamline the process of generating media coverage reports. By simply sending an email, you can receive a detailed PDF report with screenshots and AI analysis.
 
 ---
 
@@ -121,7 +120,7 @@ After sending your request, you'll get two emails in quick succession: an immedi
 
 A confirmation email will be sent to you shortly after your request, confirming that the system is processing your report.
 
-### 2. Complete Media Report (PDF + Analytics)
+### 2. Complete Media Report (PDF)
 
 Within a few minutes, you'll receive the final email containing your comprehensive report.
 
@@ -129,12 +128,6 @@ Within a few minutes, you'll receive the final email containing your comprehensi
 * An AI-generated executive summary.
 * Screenshots and links of relevant media coverage.
 * Professional formatting, ready for client presentations.
-
-**The Analytics Table Includes:**
-* Website traffic data for each source.
-* Global rankings.
-* Monthly visits.
-* Time on site metrics and bounce rates.
 
 ---
 
