@@ -3,8 +3,6 @@ import { env } from "../../env.js";
 import { replyPRAgentEmail, sendFinalEmailWithAttachment } from "../../actions/emailActions.js";
 import { searchMediaSources } from "../../actions/searchActions.js";
 import { takeScreenshotsAndGeneratePDF } from "../../actions/screenshotActions.js";
-import { getAnalyticsAndLogTable } from "../../actions/analyticsActions.js";
-import { generateHTMLTable } from "../../utils/formatters.js";
 
 const router = express.Router();
 
@@ -147,23 +145,14 @@ router.post("/", async (req, res) => {
       searchData.generatedReport
     );
 
-    // Action 6: Get Analytics and Log Table
-    console.log("\n📊 Step 4: Gathering analytics data...");
-    const analyticsData = await getAnalyticsAndLogTable(
-      searchData.searchResults
-    );
-
-    // Generate HTML table for final email
-    const htmlTable = generateHTMLTable(analyticsData);
-
-    // Action 7: Send Final Email with PDF Attachment
-    console.log("\n📧 Step 5: Sending final email with PDF attachment...");
+    // Action 7: Send Final Email with PDF Attachment (no analytics table)
+    console.log("\n📧 Step 4: Sending final email with PDF attachment...");
     const finalEmailResponse = await sendFinalEmailWithAttachment(
       extractedEmail,
       reportData.threadId,
       screenshotData.pdfS3Key,
       screenshotData.pdfFileName,
-      htmlTable
+      "" // Empty HTML table since we removed analytics
     );
 
     if (!finalEmailResponse || finalEmailResponse.partialSuccess) {
@@ -185,7 +174,6 @@ router.post("/", async (req, res) => {
       `   • Screenshots taken: ${screenshotData.screenshotUrls.length}`
     );
     console.log(`   • PDF saved: ${screenshotData.pdfFileName}`);
-    console.log(`   • Analytics gathered: ${analyticsData.length} domains`);
     console.log(
       `   • Final email sent: ${
         finalEmailResponse ? "✅ Success" : "❌ Failed"
@@ -200,10 +188,8 @@ router.post("/", async (req, res) => {
         searchResultsCount: searchData?.searchResults?.length || 0,
         screenshotsCount: screenshotData?.screenshotUrls?.length || 0,
         pdfGenerated: screenshotData?.pdfFileName || "Not generated",
-        analyticsCount: analyticsData?.length || 0,
         finalEmailSent:
           !!finalEmailResponse || finalEmailResponse?.partialSuccess,
-        htmlTableGenerated: true,
       },
     });
   } catch (error) {

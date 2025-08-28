@@ -44,13 +44,13 @@ export const replyPRAgentEmail = async (email, threadId) => {
   }
 };
 
-// Action 7: Send Final Email with PDF Attachment and Analytics
+// Action 7: Send Final Email with PDF Attachment
 export const sendFinalEmailWithAttachment = async (
   email,
   threadId,
   pdfS3Key,
   pdfFileName,
-  htmlTable
+  htmlTable // Keep parameter for compatibility but won't use it
 ) => {
   try {
     console.log("📎 Using existing PDF S3 key for attachment:", pdfS3Key);
@@ -75,12 +75,9 @@ export const sendFinalEmailWithAttachment = async (
  <div>
   <h3>Generated media coverage report completed!</h3>
   
-  <p>Please find the attached PDF report with screenshots and analytics summary below:</p>
+  <p>Please find the attached PDF report with screenshots and detailed coverage analysis.</p>
 
-  <h4>Report Analytics Summary:</h4>
-  ${htmlTable}
-
-  <p>The complete report with screenshots and detailed coverage analysis is attached as a PDF.</p>
+  <p>The complete report with screenshots and media coverage analysis is attached as a PDF.</p>
  </div>
   </body>
 </html>`,
